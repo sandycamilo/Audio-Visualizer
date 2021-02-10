@@ -9,22 +9,24 @@
  */
 
 function render(frequencyArray, ctx, centerX, centerY, radius) {
-	ctx.clearRect(0, 0, 300, 300)
+	ctx.clearRect(0, 0, 30, 300)
 
 	ctx.beginPath()
 	ctx.arc(centerX, centerY, radius, 0, 2 * Math.PI)
 	ctx.strokeStyle = 'white'
 	ctx.stroke()
+	ctx.fillStyle = 'pink'
+	ctx.fill()
 
 
 	const bars = frequencyArray.length
-	const barMaxLength = (300 - radius) / 2
+	const barMaxLength = (20 - radius) / 2
 	const step = Math.PI * 2 / bars
 
 	// Loop over the data
 	frequencyArray.forEach((f, i) => {
 		// normalize the value to the range
-		const barLength = f / 255 * barMaxLength // 0.0 - 1.0 * barMaxLength
+		const barLength = f / 425 * barMaxLength // 0.0 - 1.0 * barMaxLength
 		
 		// plot starting and ending points. Map these around a circle
 		const x1 = (Math.cos(step * i) * radius) + centerX

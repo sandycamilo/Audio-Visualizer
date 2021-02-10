@@ -12,8 +12,8 @@
 
 function render(frequencyArray, ctx, width, height) {
 	// Fill the canvas with a color before drawing 
-	ctx.fillStyle = 'rgba(255, 255, 255, 0.2)' 
-	ctx.fillRect(0, 0, width, height)
+	ctx.fillStyle = 'rgba(255, 255, 255, 0.5)' 
+	ctx.fillRect(0, 0, width, height) 
 	ctx.fill()
 
 	// Calculate some values needed to draw the frequency data
@@ -37,6 +37,7 @@ function render(frequencyArray, ctx, width, height) {
 		// Draw circle at x and y of radius
 		ctx.arc(x, y, radius, 0, pi2)
 		// Set fill color by multiplying the index by color Step
+		ctx.strokeStyle = 'blue'
 		ctx.fillStyle = `hsla(${colorStep * i}, 100%, 50%, 0.15)`
 		ctx.fill()
 	})

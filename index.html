@@ -11,45 +11,70 @@
         display: flex;
         justify-content: center;
         align-items: center;
-        flex-direction: column;
+        flex-direction: row;
+        background-color: rgba(249, 245, 250, 0.123);
       }
 
       #canvas {
-        border: 80px solid rgb(226, 255, 192) ;
-        background: radial-gradient(ellipse, rgb(255, 177, 83) 7px, rgb(231, 255, 206) 40px);
+        /* border: 40px solid rgb(226, 255, 192); */
+        background: radial-gradient(ellipse, rgb(255, 177, 83) 7px, rgb(255, 206, 237) 40px);
         background-size: 36px 40px;
-        position: relative;
-        left: 220px;
-        top: -27px;
+        position: absolute;
+        top: 110px;
+        left: 650px;
       }
-
-      button {
+    
+      #button-play {
         margin: 5px;
         padding: 1em;
         border-radius: 0.25em;
         border: 1px solid white;
-        font-size: 90px;
+        font-size: 50px;
+        color: rgb(145, 138, 138);
         background-color: white;
+        /* background-color: rgba(67, 82, 252, 0.865); */
+        position: relative;
+        top: 100px;
+        left: 130px;
+      }
+
+      #button-pause {
+        margin: 5px;
+        padding: 1em;
+        border-radius: 0.25em;
+        border: 1px solid white;
+        font-size: 50px;
+        /* background-color: rgb(38, 162, 176); */
+        background-color: white;
+        color: rgb(154, 151, 151);
+        /* color: white; */
+        position: relative;
+        top: 400px;
+        left: -80px;
       }
 
       .buttons {
         width: 300px;
-        height: 200px;
-        position: relative;
-        left: -540px;
-        top: 280px;
+        height: 300px;
+        position: absolute;
+        left: 100px;
+        top: 100px;
+        display: flex;
+        flex-direction: row;
       }
+
     </style>
   </head>
   <body>
+     <!-- creating canvas and settings its size -->
+     <div class="cavas">
+      <canvas id="canvas" width="800" height="800"></canvas>
+    </div>
+
     <div class="buttons">
       <button id="button-play">Play</button>
       <button id="button-pause">Stop</button>
     </div>
-
-    <!-- creating canvas and settings its size -->
-    <canvas id="canvas" width="800" height="800"></canvas>
-
     <script src="main.js" type="module"></script>
   </body>
 </html>

@@ -13,7 +13,7 @@ import circleCenterRenderer from './renderCircleCenter.js'
 import verticalBarsRenderer from './verticalBarRenderer.js'
 import verticalBarsMonoRenderer from './verticalBarsMonoRenderer.js'
 import radialRayRenderer from './radialRayRenderer.js'
-// import flowerRenderer from './flowerRenderer.js'
+import flowerRenderer from './flowerRenderer.js'
 
 
 // --------------------------------------------------------
@@ -104,7 +104,8 @@ function render() {
 	// radialRayRenderer(frequencyArray, ctx, centerX, centerY, radius)
 	// verticalBarsMonoRenderer(frequencyArray, ctx, 12, 300, 300)
 	// verticalBarsRenderer(frequencyArray, ctx, 800, 800)
-	// circleCenterRenderer(frequencyArray, ctx, centerX, centerY)
+	circleCenterRenderer(frequencyArray, ctx, centerX, centerY)
+	// flowerRenderer(frequencyArray, ctx, centerX, centerY)
 	// circleGridRenderer(frequencyArray, ctx, 300, 300)
 	// takes in the frequency data, canvas and thr center and radius to draw
 	circleRenderer(frequencyArray, ctx, centerX, centerY, radius)
