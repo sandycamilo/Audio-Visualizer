@@ -5,42 +5,78 @@
     <style>
       body, html {
         height: 100%;
-        background-color: rgb(255, 251, 245);
+        background-color: rgb(253, 244, 244);
+      }
+
+      #canvas4 {
+        width: 300px;
+        height: 300px;
+        position:absolute;
+        top: 40%;
+        left: 60%;
+        border-radius: 50%;
+        background: radial-gradient(ellipse, rgba(211, 255, 201, 0.965) 7px, rgb(9, 115, 67) 40px);
+        background-size: 36px 40px;
+      }
+
+      #canvas3 {
+        position: absolute;
+        top: 10%;
+        left: 25%;
+        border-radius: 50%;
+        background: radial-gradient(ellipse, rgb(206, 134, 46) 7px, rgb(255, 33, 122) 40px);
+        background-size: 26px 10px;
+        width:400px;
+        height:400px;
+      }
+
+      #canvas2 {
+        background: radial-gradient(ellipse, rgb(133, 107, 75) 7px, rgba(210, 212, 48, 0.923) 2px);
+        background-size: 36px 30px;
+        width: 200px;
+        height:200px;
+        position: absolute;
+        border-radius: 50%;
+        top: 10%;
+        left: 10%;
       }
 
       #canvas {
-        background: radial-gradient(ellipse, rgb(241, 193, 133) 7px, rgb(255, 206, 237) 40px);
-        /* background-size: 36px 40px; */
         position: absolute;
+        top: 37%;
+        left: 4%;
         border-radius: 50%;
-        top: 10px;
-        left: 20%;
+        background: radial-gradient(ellipse, rgba(136, 68, 224, 0.81) 7px, rgba(229, 229, 55, 0.571) 40px);
+        background-size: 306px 300px;
+        width:500px;
+        height:500px;
       }
     
       #button-play, #button-pause {
-        border-radius: 50%;
-        margin: 5px;
-        padding: 2px; 
-        font-size: 100px;
-        color: rgb(172, 42, 5);
-        background-color: rgba(156, 0, 88, 0.981);
+        font-size: 20px;
+        border: none;
+        padding: 2px;
+        color: black;
+        border-radius: 10%;
+        background-color: rgb(253, 244, 244);
       }
 
       .buttons {
-        width: 20px;
         position: absolute;
-        left: 80%;
-        top: 30px;
+        left: 83%;
+        top: 50px;
         display: flex;
-        flex-direction: column;
-        border-radius: 50%;
+        gap: 10px;
       }
 
     </style>
   </head>
   <body>
      <div class="cavas">
-      <canvas id="canvas" width="800" height="800"></canvas>
+      <canvas id="canvas4"></canvas>
+      <canvas id="canvas"></canvas>
+      <canvas id="canvas3"></canvas>
+      <canvas id="canvas2"></canvas>
     </div>
     <div class="buttons">
       <button id="button-play">play</button>

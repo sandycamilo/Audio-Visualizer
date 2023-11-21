@@ -5,21 +5,20 @@
  * @param {number} canvas height 
  */
 
-
 function render(frequencyArray, ctx, width, height) {
 	ctx.fillStyle = 'rgba(255, 255, 255, 0.5)' 
 	ctx.fillRect(0, 0, width, height) 
 	ctx.fill()
 
 	const bars = frequencyArray.length 
-	const step = width / 32           
-	const colorStep = 360 / bars   
-	const pi2 = Math.PI * 2
+	const step = width / 300           
+	const colorStep = 100 / bars   
+	const pi2 = Math.PI * 200
 
 	frequencyArray.forEach((f, i) => {
-		const radius = f / 255 * 30
-		const x = i % 32 * step             
-		const y = Math.floor(i / 32) * step 
+		const radius = f / 5 * 300
+		const x = i % 300 * step             
+		const y = Math.floor(i / 3) * step 
 		ctx.beginPath()
 		ctx.arc(x, y, radius, 0, pi2)
 		ctx.strokeStyle = 'blue'
@@ -27,6 +26,5 @@ function render(frequencyArray, ctx, width, height) {
 		ctx.fill()
 	})
 }
-
 
 export default render;

@@ -18,10 +18,10 @@ function render(frequencyArray, ctx, width, height) {
 
 	frequencyArray.forEach((f, i) => {
 		const barLength = f / 255 * height
-		const x1 = step * i // x steps across canvas
-		const y1 = height // y starts at bottom of canvas
-		const x2 = x1 // x2 matches x1
-		const y2 = height - barLength // y2 bar length
+		const x1 = step * i 
+		const y1 = height 
+		const x2 = x1 
+		const y2 = height - barLength 
 		ctx.beginPath()
 		ctx.moveTo(x1, y1)
 		ctx.lineTo(x2, y2)

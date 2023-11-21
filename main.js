@@ -1,35 +1,24 @@
 
-// Notes 
-// https://www.kkhaydarov.com/audio-visualizer/
-// https://medium.com/@duraraxbaccano/computer-art-visualize-your-music-in-javascript-with-your-browser-part-2-fa1a3b73fdc6
-
-
-// Import a renderer 
-// these are funtions that we pass in the values to and draws on the canvas one time - then the renderers are called over and over again 
-// calling them over and over again creates the animation
 import circleRenderer from './radialRayMonoRenderer.js'
-import circleGridRenderer from './renderCircleGrid.js'
+import radialRayRenderer from './radialRayRenderer.js'
+import flowerRenderer from './flowerRenderer.js'
 import circleCenterRenderer from './renderCircleCenter.js'
 import verticalBarsRenderer from './verticalBarRenderer.js'
 import verticalBarsMonoRenderer from './verticalBarsMonoRenderer.js'
-import radialRayRenderer from './radialRayRenderer.js'
-import flowerRenderer from './flowerRenderer.js'
+import circleGridRenderer from './renderCircleGrid.js'
 
-
-// --------------------------------------------------------
 // Canvas
-
-// Draw on the canvas
-// renderers below
 const canvas = document.getElementById('canvas')
+const canvas2 = document.getElementById('canvas2')
+const canvas3 = document.getElementById('canvas3')
+const canvas4 = document.getElementById('canvas4')
 const ctx = canvas.getContext('2d')
+const ctx2 = canvas2.getContext('2d')
+const ctx3 = canvas3.getContext('2d')
+const ctx4 = canvas4.getContext('2d')
 
-// ----------------------------------------------------------
-// Buttons 
-// referenced these two elements by id name 
 const playButton = document.getElementById('button-play')
 const pauseButton = document.getElementById('button-pause')
-// added evenlisteners ~ when user clicks button it starts and stops audio
 playButton.addEventListener('click', (e) => {
 	startAudio()
 })
@@ -38,20 +27,15 @@ pauseButton.addEventListener('click', (e) => {
 	audio.pause()
 })
 
-
-// --------------------------------------------------------
-// Audio setup
-
 let analyser
 let frequencyArray
 let audio
 
 function startAudio() {
 	audio = new Audio()
-	// audio context manipulates audio data
 	// older browsers use webkit extension
 	const audioContext = new (window.AudioContext || window.webkitAudioContext)()
-	
+
 	audio.src = 'bird-whistling-a.wav'
 	// audio.src = 'log-sine-sweep.wav'
 
@@ -67,23 +51,74 @@ function startAudio() {
 	requestAnimationFrame(render)
 }
 
+function makeDraggable(element) {
+  let pos1 = 0, pos2 = 0, pos3 = 0, pos4 = 0;
+
+  element.onmousedown = dragMouseDown;
+
+  function dragMouseDown(e) {
+    e = e || window.event;
+    e.preventDefault();
+    pos3 = e.clientX;
+    pos4 = e.clientY;
+    document.onmouseup = closeDragElement;
+    document.onmousemove = elementDrag;
+  }
+
+  function elementDrag(e) {
+    e = e || window.event;
+    e.preventDefault();
+    pos1 = pos3 - e.clientX;
+    pos2 = pos4 - e.clientY;
+    pos3 = e.clientX;
+    pos4 = e.clientY;
+    element.style.top = (element.offsetTop - pos2) + 'px';
+    element.style.left = (element.offsetLeft - pos1) + 'px';
+  }
+
+  function closeDragElement() {
+    document.onmouseup = null;
+    document.onmousemove = null;
+  }
+}
+
+	const canvasElements = [canvas, canvas2, canvas3, canvas4];
+
+	canvasElements.forEach((canvas) => {
+		makeDraggable(canvas);
+});
+
+
 function render() {
 	const centerX = 800 / 2
 	const centerY = 800 / 2
 	const radius = 800 / 5
 	analyser.getByteFrequencyData(frequencyArray)
 	
-	// Use one of the renderers below 
 	radialRayRenderer(frequencyArray, ctx, centerX, centerY, radius)
-	// verticalBarsMonoRenderer(frequencyArray, ctx, 12, 300, 300)
-	// verticalBarsRenderer(frequencyArray, ctx, 800, 800)
-	circleCenterRenderer(frequencyArray, ctx, centerX, centerY)
-	flowerRenderer(frequencyArray, ctx, centerX, centerY)
-	// circleGridRenderer(frequencyArray, ctx, 300, 300)
-	// takes in the frequency data, canvas and thr center and radius to draw
+	// circleCenterRenderer(frequencyArray, ctx, centerX, centerY)
 	circleRenderer(frequencyArray, ctx, centerX, centerY, radius)
+	flowerRenderer(frequencyArray, ctx, centerX, centerY)
+	
+	radialRayRenderer(frequencyArray, ctx2, centerX, centerY, radius)
+	// circleCenterRenderer(frequencyArray, ctx2, centerX, centerY)
+	// circleRenderer(frequencyArray, ctx2, centerX, centerY, radius)
+	flowerRenderer(frequencyArray, ctx2, centerX, centerY)
 
-	// Set up the next animation frame
+	radialRayRenderer(frequencyArray, ctx3, centerX, centerY, radius)
+	circleCenterRenderer(frequencyArray, ctx3, centerX, centerY)
+	// circleRenderer(frequencyArray, ctx3, centerX, centerY, radius)
+	flowerRenderer(frequencyArray, ctx3, centerX, centerY)
+
+	radialRayRenderer(frequencyArray, ctx4, centerX, centerY, radius)
+	// circleCenterRenderer(frequencyArray, ctx4, centerX, centerY)
+	// circleRenderer(frequencyArray, ctx4, centerX, centerY, radius)
+	// flowerRenderer(frequencyArray, ctx4, centerX, centerY)
+
+	// verticalBarsMonoRenderer(frequencyArray, ctx2, 12, 300, 300)
+	// verticalBarsRenderer(frequencyArray, ctx4, 800, 200)
+	circleGridRenderer(frequencyArray, ctx, 300, 300)
+
 	requestAnimationFrame(render)
 }
 
